@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Baloo+2:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js')</script>
 <style>
   :root{
     --cream:#FFF7ED; --card:#FFEFDD; --soft:#FBE7CF;
@@ -80,7 +81,40 @@
     .feat-row.rev .txt{order:0}.hero-art{order:-1}
     nav .nav-cta{display:none}
   }
-  @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}}
+  /* ── motion: entrance · idle float · scroll reveals · hover ─ */
+  .hero .txt>*{animation:rise .7s cubic-bezier(.22,1,.36,1) both}
+  .hero .txt>*:nth-child(2){animation-delay:.09s}
+  .hero .txt>*:nth-child(3){animation-delay:.18s}
+  .hero .txt>*:nth-child(4){animation-delay:.27s}
+  .hero .txt>*:nth-child(5){animation-delay:.36s}
+  .hero-art{animation:popIn .8s cubic-bezier(.22,1,.36,1) .25s both}
+  @keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+  @keyframes popIn{from{opacity:0;transform:translateY(24px) scale(.95)}to{opacity:1;transform:none}}
+  .phone{animation:floaty 5s ease-in-out infinite}
+  @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+  .art-box .spr,.grow .spr,.collect .spr{animation:bob 3.2s ease-in-out infinite}
+  .art-box .spr:nth-of-type(2){animation-delay:.5s}
+  .grow .spr:nth-of-type(2){animation-delay:.25s}.grow .spr:nth-of-type(3){animation-delay:.5s}
+  .collect .spr:nth-of-type(2){animation-delay:.2s}.collect .spr:nth-of-type(3){animation-delay:.4s}
+  .collect .spr:nth-of-type(4){animation-delay:.6s}.collect .spr:nth-of-type(5){animation-delay:.8s}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+  .screen .who{animation:whoBob 3.8s ease-in-out infinite}
+  @keyframes whoBob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-6px)}}
+  .heart{animation:heartFloat 2.6s ease-in-out infinite;transform-origin:center}
+  @keyframes heartFloat{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-7px) scale(1.14)}}
+  .js .reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s cubic-bezier(.22,1,.36,1)}
+  .js .reveal.in{opacity:1;transform:none}
+  .feat .card,.mystery .card{transition:transform .2s ease,box-shadow .2s ease}
+  .feat .card:hover,.mystery .card:hover{transform:translateY(-4px);box-shadow:8px 8px 0 rgba(122,59,18,.18)}
+  .pill{transition:transform .15s ease,background .15s ease}
+  .pill:hover{transform:translateY(-2px);background:#FFE0BD}
+  .nav-cta{transition:transform .12s ease,box-shadow .12s ease}
+  .nav-cta:hover{transform:translateY(-2px);box-shadow:0 5px 0 var(--orange-d)}
+  @media (prefers-reduced-motion:reduce){
+    *{transition:none!important;animation:none!important;scroll-behavior:auto}
+    .js .reveal,.hero .txt>*,.hero-art{opacity:1!important;transform:none!important}
+    .screen .who{transform:translateX(-50%)!important}
+  }
 </style>
 </head>
 <body>
@@ -107,7 +141,7 @@
   </div></div></div>
 </div></header>
 
-<section class="feat"><div class="wrap feat-row">
+<section class="feat reveal"><div class="wrap feat-row">
   <div class="txt card">
     <span class="kicker">глава 1</span>
     <h2>Однажды приходит котёнок</h2>
@@ -119,7 +153,7 @@
   </div>
 </div></section>
 
-<section class="feat"><div class="wrap feat-row rev">
+<section class="feat reveal"><div class="wrap feat-row rev">
   <div class="txt card">
     <span class="kicker">глава 2</span>
     <h2>Заботься каждый день</h2>
@@ -132,7 +166,7 @@
   </div>
 </div></section>
 
-<section class="feat"><div class="wrap feat-row">
+<section class="feat reveal"><div class="wrap feat-row">
   <div class="txt card">
     <span class="kicker">глава 3</span>
     <h2>Играйте вместе</h2>
@@ -145,7 +179,7 @@
   </div>
 </div></section>
 
-<section class="mystery"><div class="wrap"><div class="card">
+<section class="mystery reveal"><div class="wrap"><div class="card">
   <span class="kicker">а дальше…</span>
   <h2>Он растёт</h2>
   <div class="grow">
@@ -159,7 +193,7 @@
   <p>Котёнок взрослеет день за днём — от неуклюжего малыша до настоящего кота. А что будет потом… узнаешь сам.</p>
 </div></div></section>
 
-<section class="feat"><div class="wrap" style="text-align:center">
+<section class="feat reveal"><div class="wrap" style="text-align:center">
   <div class="card" style="padding:30px">
     <span class="kicker">коллекция</span>
     <h2 style="font-size:28px;margin:10px 0 16px">16 пород ждут тебя</h2>
@@ -174,7 +208,7 @@
   </div>
 </div></section>
 
-<section class="final"><div class="wrap">
+<section class="final reveal"><div class="wrap">
   <h2>Заведи своего котика</h2>
   <p>Он уже ждёт, когда ты придёшь домой.</p>
   <a class="btn" href="https://apps.apple.com/app/kotiki-cats/id6762067633">Скачать в App Store</a>
@@ -184,9 +218,19 @@
   <span class="logo">KOTIKI</span>
   <div>
     <a href="https://apps.apple.com/app/kotiki-cats/id6762067633">App Store</a>
-    <a href="#">Поддержка</a>
-    <a href="#">Конфиденциальность</a>
+    <a href="support.html">Поддержка</a>
+    <a href="privacy-policy-ru.html">Конфиденциальность</a>
   </div>
 </div></footer>
+<script>
+  // Reveal each section as it scrolls into view (progressive enhancement: the
+  // `.js` class on <html> is what arms the hidden state, so no-JS = all visible).
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: .12 });
+  document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+</script>
 </body>
 </html>
